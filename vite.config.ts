@@ -15,9 +15,14 @@ const localBindingConfig = {
   main: "./worker/index.ts",
   compatibility_flags: ["nodejs_compat"],
   vars: {
-    IWENCAI_API_KEY: process.env.IWENCAI_API_KEY ?? "",
-    IWENCAI_BASE_URL:
-      process.env.IWENCAI_BASE_URL ?? "https://openapi.iwencai.com",
+    // Omit bindings unless explicitly supplied for local development: a
+    // production deploy must not replace existing Cloudflare Secrets/vars.
+    ...(process.env.IWENCAI_BASE_URL
+      ? { IWENCAI_BASE_URL: process.env.IWENCAI_BASE_URL }
+      : {}),
+    ...(process.env.IWENCAI_API_KEY
+      ? { IWENCAI_API_KEY: process.env.IWENCAI_API_KEY }
+      : {}),
   },
   d1_databases: d1
     ? [
