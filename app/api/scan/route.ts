@@ -131,7 +131,7 @@ export async function POST(request: Request) {
     const detailedParts = [];
     for (const exchange of exchanges) {
       detailedParts.push(await fetchPaginatedUniverse(
-        (page, limit) => queryPage("hithink-astock-selector", `${queryDate}${exchange}，显示股票代码、股票简称、最新价${auctionFields}、昨日收盘价、开盘价、收盘价、涨跌幅、最高价、最低价、成交额、换手率、振幅、量比、主力资金净流入、所属同花顺行业、5日涨跌幅、20日涨跌幅、5日均线、10日均线、20日均线、近20日最高价、交易状态，按成交额从高到低排序`, page, limit),
+        (page, limit) => queryPage("hithink-market-query", `${queryDate}${exchange}，显示股票代码、股票简称、最新价${auctionFields}、昨日收盘价、开盘价、收盘价、涨跌幅、最高价、最低价、成交额、换手率、振幅、量比、主力资金净流入、所属同花顺行业、5日涨跌幅、20日涨跌幅、5日均线、10日均线、20日均线、近20日最高价、交易状态，按成交额从高到低排序`, page, limit),
         paginationOptions,
       ));
     }

@@ -29,7 +29,8 @@ test("contains the CTS V6.0.1 decision-first UI and server-only Wen-Cai route", 
   assert.doesNotMatch(page, /现在可买|次日候选/);
   assert.doesNotMatch(page, /V5|v5|不会自动清空|cts-selection-history|historyMigration/);
   assert.doesNotMatch(history, /V5|v5|LEGACY|MIGRATION|cts-selection-history/);
-  assert.match(route, /hithink-astock-selector/);
+  assert.match(route, /queryPage\("hithink-market-query"/);
+  assert.doesNotMatch(route, /hithink-astock-selector/);
   assert.match(route, /fetchPaginatedUniverse/);
   assert.match(route, /buildTradePlan/);
   assert.match(strategy, /export function buildTradePlan/);
